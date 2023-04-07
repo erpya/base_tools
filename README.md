@@ -1,22 +1,17 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Base Tools
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A complete library for used inside apps created by ERPCyA
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+This include:
+
+- Themes
+- Reports
+- Synchronization tools
+- Format tools
+- Login tool
+- Base config drawer
 
 ## Getting started
 
@@ -25,15 +20,14 @@ start using the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+You can add it to your own project, just add the github reference like it:
+```
+  base_tools:
+    git:
+      url: https://github.com/erpya/base_tools
+      ref: main
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+This allows create a project very fast without worry with things like sync, theme, report formats
