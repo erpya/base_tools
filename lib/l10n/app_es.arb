@@ -25,5 +25,8 @@
     "downloading" : "Descargando",
     "upgrading" : "Actualizando",
     "updateFinished": "Actualización Finalizada",
-    "noRecordsFound": "No se encontraron registros"
+    "noRecordsFound": "No se encontraron registros",
+    "locationDisabled": "El servicio de Localización se encuentra deshabilitado. Por davor habilite el servicio",
+    "locationDenied": "Permiso de Localización denegado",
+    "locationPermanentlyDenied": "Los permisos de localización se encuentran denegados de manera permanente, no se puede ejecutar la acción"
 }

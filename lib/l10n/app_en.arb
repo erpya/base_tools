@@ -25,5 +25,8 @@
     "downloading" : "Downloading",
     "upgrading" : "Upgrading",
     "updateFinished": "Update Finished",
-    "noRecordsFound": "No records found"
+    "noRecordsFound": "No records found",
+    "locationDisabled": "Location services are disabled. Please enable the services",
+    "locationDenied": "Location permissions are denied",
+    "locationPermanentlyDenied": "Location permissions are permanently denied, we cannot request permissions"
 }
