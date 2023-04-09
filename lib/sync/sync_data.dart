@@ -1,4 +1,5 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:base_tools/sync/sync_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:base_tools/utils/utils.dart';
@@ -7,13 +8,11 @@ class SyncData {
   static Duration longDuration = const Duration(days: 365);
   static Duration shortDuration = const Duration(seconds: 5);
   static Future<void> downloadData(
-      AppLocalizations localization, bool isBackground) async {
+      AppLocalizations localization, SyncHandler? handler, bool isBackground) async {
     try {
-      //Update Currency
-      _showAction(
-          localization.downloading, localization.downloading, isBackground);
-
-      _showMessage(localization.updateFinished, isBackground);
+      if(handler != null) {
+        handler.synchronize();
+      }
     } catch (e) {
       AppwriteException? ex;
       String erroMessage = "";

@@ -1,3 +1,4 @@
+import 'package:base_tools/sync/sync_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:base_tools/sync/sync_data.dart';
@@ -8,7 +9,8 @@ import '../../utils/movilecontext.dart';
 import 'login.dart';
 
 class UserDrawer extends StatefulWidget {
-  const UserDrawer({Key? key}) : super(key: key);
+  final SyncHandler? syncHandler;
+  const UserDrawer({Key? key, this.syncHandler}) : super(key: key);
 
   @override
   State<UserDrawer> createState() => _UserDrawerState();
@@ -85,7 +87,7 @@ class _UserDrawerState extends State<UserDrawer> {
             leading: const Icon(Icons.sync),
             onTap: () {
               Navigator.pop(context);
-              SyncData.downloadData(_localization!, false);
+              SyncData.downloadData(_localization!, widget.syncHandler, false);
             },
           ),
         ),
