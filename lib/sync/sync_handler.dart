@@ -1,3 +1,3 @@
 abstract class SyncHandler {
-  void synchronize();
+  Future<void> synchronize();
 }
