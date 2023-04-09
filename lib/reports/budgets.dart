@@ -4,7 +4,7 @@
 
 import 'package:flutter/widgets.dart';
 
-import 'package:flutter_gen/gen_l10n/base_tools_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:base_tools/reports/charts/pie_chart.dart';
 import 'package:base_tools/reports/charts/styles/data.dart';
 import 'package:base_tools/reports/charts/finance.dart';

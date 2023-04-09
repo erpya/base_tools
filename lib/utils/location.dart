@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:flutter_gen/gen_l10n/base_tools_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Location {
   static Future<Position> getCurrentLocation() async {

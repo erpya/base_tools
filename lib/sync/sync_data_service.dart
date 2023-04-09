@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 
-import 'package:flutter_gen/gen_l10n/base_tools_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SyncDataService {
   AppLocalizations _localization;
