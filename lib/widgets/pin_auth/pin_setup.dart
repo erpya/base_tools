@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:base_tools/utils/utils.dart';
 import 'package:base_tools/widgets/pin_auth/pin_input.dart';
 import 'package:pin_lock/pin_lock.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/base_tools_localizations.dart';
 
 class WSetupAuthentication extends StatelessWidget {
   const WSetupAuthentication({super.key});

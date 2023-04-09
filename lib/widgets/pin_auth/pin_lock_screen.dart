@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pin_lock/pin_lock.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/base_tools_localizations.dart';
 
 /// Specify what your lock screen should look like based on
 /// current state. See [LockScreenConfiguration] documentation for a list of all
