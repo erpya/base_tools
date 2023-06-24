@@ -45,7 +45,7 @@ class _WLoginState extends State<WLogin> {
   ) async {
     await MovileApi.getAccount().then((account) async {
       try {
-        Account user = await account!.get();
+        User user = await account!.get();
         MovileContext.setUserId(user.$id);
         MovileContext.setUserName(user.name);
         MovileContext.setUserEmail(user.email);
