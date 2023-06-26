@@ -6,14 +6,14 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> initializeService() async {
   final service = FlutterBackgroundService();
 
   /// OPTIONAL, using custom notification channel id
-  const AndroidNotificationChannel channel = AndroidNotificationChannel(
+/*  const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'my_foreground', // id
     'MY FOREGROUND SERVICE', // title
     description:
@@ -28,7 +28,7 @@ Future<void> initializeService() async {
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
-
+*/
   await service.configure(
     androidConfiguration: AndroidConfiguration(
       // this will be executed when app is in foreground or background in separated isolate
@@ -81,9 +81,9 @@ void onStart(ServiceInstance service) async {
   //await preferences.setString("hello", "world");
 
   /// OPTIONAL when use custom notification
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  /*final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-
+  */
   if (service is AndroidServiceInstance) {
     service.on('setAsForeground').listen((event) {
       service.setAsForegroundService();
@@ -104,7 +104,7 @@ void onStart(ServiceInstance service) async {
       if (await service.isForegroundService()) {
         /// OPTIONAL for use custom notification
         /// the notification id must be equals with AndroidConfiguration when you call configure() method.
-        flutterLocalNotificationsPlugin.show(
+        /*flutterLocalNotificationsPlugin.show(
           888,
           'COOL SERVICE',
           'Awesome ${DateTime.now()}',
@@ -117,7 +117,7 @@ void onStart(ServiceInstance service) async {
             ),
           ),
         );
-
+        */
         // if you don't using custom notification, uncomment this
         // service.setForegroundNotificationInfo(
         //   title: "My App Service",
