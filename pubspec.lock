@@ -548,11 +548,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: master
-      resolved-ref: "16dd7a46bf96bffa98291a1b8f412b10766027fe"
+      ref: "0.1.1"
+      resolved-ref: "3cff0a8069e893bc1e884997a7f0efd0e582a72b"
       url: "https://github.com/erpya/pin_lock.git"
     source: git
-    version: "0.1.0"
+    version: "0.1.1"
   platform:
     dependency: transitive
     description:

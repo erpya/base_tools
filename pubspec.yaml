@@ -1,6 +1,6 @@
 name: base_tools
 description: A new Flutter project.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/erpya/base_tools
 
 environment:
@@ -13,7 +13,7 @@ dependencies:
   pin_lock: 
     git:
       url: https://github.com/erpya/pin_lock.git
-      ref: master
+      ref: 0.1.1
 #   path: ../pin_lock
   appwrite: ^9.0.1
   flutter_login: ^4.1.1
