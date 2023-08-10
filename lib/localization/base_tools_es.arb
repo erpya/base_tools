@@ -24,9 +24,14 @@
     "useFingerprint": "Usar Autenticación Biométrica",
     "downloading" : "Descargando",
     "upgrading" : "Actualizando",
+    "saving": "Guardando",
     "updateFinished": "Actualización Finalizada",
     "noRecordsFound": "No se encontraron registros",
     "locationDisabled": "El servicio de Localización se encuentra deshabilitado. Por davor habilite el servicio",
     "locationDenied": "Permiso de Localización denegado",
-    "locationPermanentlyDenied": "Los permisos de localización se encuentran denegados de manera permanente, no se puede ejecutar la acción"
+    "locationPermanentlyDenied": "Los permisos de localización se encuentran denegados de manera permanente, no se puede ejecutar la acción",
+    "error": "Error",
+    "info": "Información",
+    "warning": "Advertencia",
+    "question": "Pregunta"
 }

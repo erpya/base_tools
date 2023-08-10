@@ -1,87 +1,95 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:base_tools/localization/base_tools_localizations.dart';
+
+enum messageType {
+  info,
+  error,
+  warning,
+  question,
+}
 
 class MovileMessage {
-  static void buildError(
-      String headerMessage, String bodyMessage, BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      backgroundColor: Colors.transparent,
-      behavior: SnackBarBehavior.floating,
-      elevation: 0,
-      content: Stack(
-        alignment: Alignment.center,
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            height: 70,
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-            ),
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 48,
+  BuildContext? context;
+  String? tittle;
+  String? body;
+  String? type;
+  BaseToolsLocalizations? localization;
+  List<Widget>? actions;
+
+  MovileMessage({
+    this.context,
+    this.body,
+    this.type,
+  }) : localization = BaseToolsLocalizations.of(context!);
+
+  String getTittle() {
+    switch (type!) {
+      case "info":
+        return localization!.info;
+      case "error":
+        return localization!.error;
+      case "warning":
+        return localization!.warning;
+      case "question":
+        return localization!.question;
+    }
+    return "";
+  }
+
+  static void showErrorMessage(
+      BuildContext context, String bodyMessage, Function() okAction) {
+    MovileMessage message = MovileMessage(
+      context: context,
+      body: bodyMessage,
+      type: messageType.error.name,
+    );
+    message.actions = [
+      TextButton(onPressed: okAction, child: const Text("Ok"))
+    ];
+    message.showMessage();
+  }
+
+  void showMessage() {
+    if (Platform.isIOS) {
+      showCupertinoDialog(
+          context: context!,
+          builder: (ctx) => CupertinoAlertDialog(
+                title: Text(
+                  getTittle(),
                 ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        headerMessage,
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                      Text(
-                        bodyMessage,
-                        style: TextStyle(fontSize: 14, color: Colors.white),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
+                content: Text(
+                  body!,
                 ),
-              ],
-            ),
-          ),
-          Positioned(
-              bottom: 25,
-              left: 20,
-              child: ClipRRect(
-                child: Stack(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      color: Colors.red.shade200,
-                      size: 17,
-                    )
-                  ],
-                ),
-              )),
-          Positioned(
-              top: -20,
-              left: 5,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    height: 30,
-                    width: 30,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                  ),
-                  const Positioned(
-                      top: 5,
-                      child: Icon(
-                        Icons.clear_outlined,
-                        color: Colors.white,
-                        size: 20,
-                      ))
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(ctx);
+                      },
+                      child: const Text("Ok"))
                 ],
-              )),
-        ],
-      ),
-    ));
+              ));
+    } else {
+      showDialog(
+        context: context!,
+        builder: (ctx) => AlertDialog(
+          title: Text(
+            getTittle(),
+          ),
+          content: Text(
+            body!,
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(ctx);
+                },
+                child: const Text("Ok"))
+          ],
+        ),
+      );
+    }
   }
 }

@@ -1,6 +1,6 @@
-import 'package:base_tools/sync/sync_handler.dart';
+import 'package:base_tools/utils/movilemessage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:base_tools/localization/base_tools_localizations.dart';
 import 'package:base_tools/sync/sync_data.dart';
 import 'package:base_tools/utils/api.dart';
 import 'package:base_tools/utils/login.dart';
@@ -9,8 +9,9 @@ import '../../utils/movilecontext.dart';
 import 'login.dart';
 
 class UserDrawer extends StatefulWidget {
-  final SyncHandler? syncHandler;
-  const UserDrawer({Key? key, this.syncHandler}) : super(key: key);
+  const UserDrawer({super.key, required this.syncHandler});
+
+  final SyncData? syncHandler;
 
   @override
   State<UserDrawer> createState() => _UserDrawerState();
@@ -21,12 +22,12 @@ class _UserDrawerState extends State<UserDrawer> {
   String? _userMail;
   bool _isLogued = false;
   bool _automaticUpdate = false;
-  AppLocalizations? _localization;
+  BaseToolsLocalizations? _localization;
 
-  void _refreshData(AppLocalizations? localization) async {
-    _isLogued = await LoginUtil.isLoggued();
-    String? userMail = await MovileContext.getUserEmail();
-    String? userName = await MovileContext.getUserName();
+  void _refreshData(BaseToolsLocalizations? localization) async {
+    _isLogued = LoginUtil.isLoggued();
+    String? userMail = MovileContext.getUserEmail();
+    String? userName = MovileContext.getUserName();
     setState(() {
       _userMail = userMail;
       _userName = userName;
@@ -40,7 +41,7 @@ class _UserDrawerState extends State<UserDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    _localization = AppLocalizations.of(context);
+    _localization = BaseToolsLocalizations.of(context);
     _refreshData(_localization);
     final drawerHeader = UserAccountsDrawerHeader(
         accountName: Text(_userName ?? _localization!.navigationDrawerUserName),
@@ -72,9 +73,13 @@ class _UserDrawerState extends State<UserDrawer> {
               _localization!.navigationDrawerLogout,
             ),
             leading: const Icon(Icons.logout),
-            onTap: () {
-              MovileApi.logout();
-              Navigator.pop(context);
+            onTap: () async {
+              await MovileApi.logout()
+                  .then((value) => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const WLogin())))
+                  .catchError((error) {
+                MovileMessage.showErrorMessage(context, "$error", () {});
+              });
             },
           ),
         ),
@@ -87,7 +92,8 @@ class _UserDrawerState extends State<UserDrawer> {
             leading: const Icon(Icons.sync),
             onTap: () {
               Navigator.pop(context);
-              SyncData.downloadData(_localization!, widget.syncHandler, false);
+              SyncData sd = widget.syncHandler!;
+              sd.synchronize();
             },
           ),
         ),

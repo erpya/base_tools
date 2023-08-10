@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pin_lock/pin_lock.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:base_tools/localization/base_tools_localizations.dart';
 
 /// Specify what your lock screen should look like based on
 /// current state. See [LockScreenConfiguration] documentation for a list of all
@@ -11,7 +11,7 @@ class PinLockScreen extends StatelessWidget {
   const PinLockScreen(this.configuration, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    AppLocalizations? localization = AppLocalizations.of(context);
+    BaseToolsLocalizations? localization = BaseToolsLocalizations.of(context);
     String getError(String? objectError) {
       if (objectError != null) {
         if (objectError.toLowerCase().contains("wrongpin")) {

@@ -22,50 +22,45 @@ class MovileContext {
   /// Database Identifier
   static const String DATABASE_ID_TAG = "movil-e";
 
-  /// Global Preferences
-  static final Future<SharedPreferences> _context =
-      SharedPreferences.getInstance();
+  static SharedPreferences? globalContext;
+
+  static Future<void> instanceContext() async {
+    await SharedPreferences.getInstance()
+        .then((instance) => globalContext = instance);
+  }
+
+  static SharedPreferences? get _context {
+    return globalContext;
+  }
 
   /// Get String Value From Movile Context
-  static Future<String?> getStringValue(String key) async {
-    Future<String?> value = _context.then((SharedPreferences context) {
-      return context.getString(key);
-    });
-    return value;
+  static String? getStringValue(String key) {
+    return _context!.getString(key);
   }
 
   /// Set String Value to Movile Context
-  static Future<void> setStringValue(String key, String value) async {
-    final SharedPreferences context = await _context;
-    context.setString(key, value);
+  static setStringValue(String key, String value) {
+    _context!.setString(key, value);
   }
 
   /// Get Boolean Value From Movile Context
-  static Future<bool?> getBooleanValue(String key) async {
-    Future<bool?> value = _context.then((SharedPreferences context) {
-      return context.getBool(key);
-    });
-    return value;
+  static bool? getBooleanValue(String key) {
+    return _context!.getBool(key);
   }
 
   /// Set Boolean Value to Movile Context
-  static Future<void> setBooleanValue(String key, bool value) async {
-    final SharedPreferences context = await _context;
-    context.setBool(key, value);
+  static void setBooleanValue(String key, bool value) {
+    _context!.setBool(key, value);
   }
 
   /// Get Integer Value From Movile Context
-  static Future<int?> getIntegerValue(String key) async {
-    Future<int?> value = _context.then((SharedPreferences context) {
-      return context.getInt(key);
-    });
-    return value;
+  static int? getIntegerValue(String key) {
+    return _context!.getInt(key);
   }
 
   /// Set Integer Value to Movile Context
-  static Future<void> setIntegerValue(String key, int value) async {
-    final SharedPreferences context = await _context;
-    context.setInt(key, value);
+  static setIntegerValue(String key, int value) {
+    _context!.setInt(key, value);
   }
 
   /// Set EndPoint to Movile Context
@@ -84,32 +79,32 @@ class MovileContext {
   }
 
   /// Get End Point From movile Context
-  static Future<String?> getEndPoint() {
+  static String? getEndPoint() {
     return getStringValue(MovileContext.ENDPOINT_TAG);
   }
 
   /// Get Project Name From Movile Context
-  static Future<String?> getProject() {
+  static String? getProject() {
     return getStringValue(MovileContext.PROJECT_TAG);
   }
 
   /// Get Session Identifier Name From Movile Context
-  static Future<String?> getSessionId() {
+  static String? getSessionId() {
     return getStringValue(MovileContext.SESSION_TAG);
   }
 
   /// Get User Identifier From Movile Context
-  static Future<String?> getUserId() {
+  static String? getUserId() {
     return getStringValue(MovileContext.USER_ID_TAG);
   }
 
   /// Get User Name From Movile Context
-  static Future<String?> getUserName() {
+  static String? getUserName() {
     return getStringValue(MovileContext.USER_NAME_TAG);
   }
 
   /// Get User Name From Movile Context
-  static Future<String?> getUserEmail() {
+  static String? getUserEmail() {
     return getStringValue(MovileContext.USER_EMAIL_TAG);
   }
 

@@ -1,12 +1,14 @@
+import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
+import 'package:base_tools/localization/base_tools_localizations.dart';
+import 'package:base_tools/utils/movilecontext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:base_tools/utils/api.dart';
-import '../../utils/movilecontext.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WLogin extends StatefulWidget {
-  const WLogin({Key? key}) : super(key: key);
+  final Widget? parentWitget;
+  const WLogin({Key? key, this.parentWitget}) : super(key: key);
 
   @override
   State<WLogin> createState() => _WLoginState();
@@ -15,14 +17,11 @@ class WLogin extends StatefulWidget {
 class _WLoginState extends State<WLogin> {
   Future<String?> _authUser(LoginData data) async {
     String? errorMessage;
-    await MovileApi.getAccount().then((account) async {
-      await account!
-          .createEmailSession(email: data.name, password: data.password)
-          .then((session) {
-        MovileApi.setSession(session);
-      }).catchError((error, stackTrace) {
-        errorMessage = error.message;
-      });
+    Account? account = MovileApi.getAccount();
+    await account!
+        .createEmailSession(email: data.name, password: data.password)
+        .then((session) {
+      MovileApi.setSession(session);
     }).catchError((error, stackTrace) {
       errorMessage = error.message;
     });
@@ -30,39 +29,39 @@ class _WLoginState extends State<WLogin> {
   }
 
   _setInitValues() async {
-    await MovileApi.getSession()
-        .then((session) async => await _validateSession(session));
+    await MovileApi.getSession().then((session) async {
+      if (session != null) await _validateSession(session);
+    });
   }
 
   @override
   void initState() {
-    _setInitValues();
     super.initState();
+    _setInitValues();
   }
 
-  _validateSession(
-    Session? session,
-  ) async {
-    await MovileApi.getAccount().then((account) async {
-      try {
-        User user = await account!.get();
-        MovileContext.setUserId(user.$id);
-        MovileContext.setUserName(user.name);
-        MovileContext.setUserEmail(user.email);
-        if (user.$id.isNotEmpty) {
+  _validateSession(Session? session) async {
+    Account? account = MovileApi.getAccount();
+    await account!.get().then((user) {
+      MovileContext.setUserId(user.$id);
+      MovileContext.setUserName(user.name);
+      MovileContext.setUserEmail(user.email);
+      if (user.$id.isNotEmpty) {
+        if (widget.parentWitget == null) {
           Navigator.pop(context);
+        } else {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => widget.parentWitget!));
         }
-      } catch (exception) {
-        print(exception.toString());
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    AppLocalizations? localization = AppLocalizations.of(context);
+    BaseToolsLocalizations? localization = BaseToolsLocalizations.of(context);
     return FutureBuilder(
-        future: MovileContext.getUserEmail(),
+        future: _setInitValues(),
         builder: (context, awaitData) {
           if (awaitData.connectionState == ConnectionState.done) {
             String _currentUsermail = "";

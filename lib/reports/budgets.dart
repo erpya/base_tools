@@ -4,7 +4,7 @@
 
 import 'package:flutter/widgets.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:base_tools/localization/base_tools_localizations.dart';
 import 'package:base_tools/reports/charts/pie_chart.dart';
 import 'package:base_tools/reports/charts/styles/data.dart';
 import 'package:base_tools/reports/charts/finance.dart';
@@ -33,7 +33,7 @@ class _BudgetsViewState extends State<BudgetsView>
     return TabWithSidebar(
       restorationId: 'budgets_view',
       mainView: FinancialEntityView(
-        heroLabel: AppLocalizations.of(context)!.noRecordsFound,
+        heroLabel: BaseToolsLocalizations.of(context)!.noRecordsFound,
         heroAmount: capTotal - usedTotal,
         segments: buildSegmentsFromBudgetItems(items),
         wholeAmount: capTotal,

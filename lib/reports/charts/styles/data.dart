@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:base_tools/localization/base_tools_localizations.dart';
 import 'package:base_tools/utils/formatters.dart';
 
 /// Calculates the sum of the primary amounts of a list of [AccountData].
@@ -46,12 +46,11 @@ double sumOf<T>(List<T> list, double Function(T elt) getValue) {
 ///
 /// The [primaryAmount] is the balance of the account in USD.
 class AccountData {
-  const AccountData({
-    required this.name,
-    required this.primaryAmount,
-    required this.accountNumber,
-    required this.zoomAcross
-  });
+  const AccountData(
+      {required this.name,
+      required this.primaryAmount,
+      required this.accountNumber,
+      required this.zoomAcross});
 
   final List<DetailedEventData> zoomAcross;
 
@@ -66,12 +65,11 @@ class AccountData {
 }
 
 class SalesProductData {
-  const SalesProductData({
-    required this.productValue,
-    required this.productName,
-    required this.amount,
-    required this.zoomAcross
-  });
+  const SalesProductData(
+      {required this.productValue,
+      required this.productName,
+      required this.amount,
+      required this.zoomAcross});
 
   final List<DetailedEventData> zoomAcross;
 
@@ -89,13 +87,12 @@ class SalesProductData {
 ///
 /// The [primaryAmount] is the amount due in USD.
 class BillData {
-  const BillData({
-    required this.name,
-    required this.primaryAmount,
-    required this.dueDate,
-    this.isPaid = false,
-    required this.zoomAcross
-  });
+  const BillData(
+      {required this.name,
+      required this.primaryAmount,
+      required this.dueDate,
+      this.isPaid = false,
+      required this.zoomAcross});
 
   final List<DetailedEventData> zoomAcross;
 
@@ -116,12 +113,11 @@ class BillData {
 ///
 /// The [primaryAmount] is the budget cap in USD.
 class BudgetData {
-  const BudgetData({
-    required this.name,
-    required this.primaryAmount,
-    required this.amountUsed,
-    required this.zoomAcross
-  });
+  const BudgetData(
+      {required this.name,
+      required this.primaryAmount,
+      required this.amountUsed,
+      required this.zoomAcross});
 
   final List<DetailedEventData> zoomAcross;
 
@@ -177,7 +173,7 @@ class UserDetailData {
 /// In a real app, this might be replaced with some asynchronous service.
 class DummyDataService {
   static List<AccountData> getAccountDataList(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = BaseToolsLocalizations.of(context)!;
     return <AccountData>[
       // AccountData(
       //   name: "localizations.rallyAccountDataChecking",
@@ -203,7 +199,7 @@ class DummyDataService {
   }
 
   static List<UserDetailData> getAccountDetailList(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = BaseToolsLocalizations.of(context)!;
     return <UserDetailData>[
       UserDetailData(
         title: "localizations.rallyAccountDetailDataAnnualPercentageYield",
@@ -306,7 +302,7 @@ class DummyDataService {
 
   static List<UserDetailData> getBillDetailList(BuildContext context,
       {required double dueTotal, required double paidTotal}) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = BaseToolsLocalizations.of(context)!;
     return <UserDetailData>[
       UserDetailData(
         title: "localizations.rallyBillDetailTotalAmount",
@@ -324,7 +320,7 @@ class DummyDataService {
   }
 
   static List<BudgetData> getBudgetDataList(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = BaseToolsLocalizations.of(context)!;
     return <BudgetData>[
       // BudgetData(
       //   name: "localizations.rallyBudgetCategoryCoffeeShops",
@@ -351,7 +347,7 @@ class DummyDataService {
 
   static List<UserDetailData> getBudgetDetailList(BuildContext context,
       {required double capTotal, required double usedTotal}) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = BaseToolsLocalizations.of(context)!;
     return <UserDetailData>[
       UserDetailData(
         title: "localizations.rallyBudgetDetailTotalCap",
@@ -369,7 +365,7 @@ class DummyDataService {
   }
 
   static List<String> getSettingsTitles(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = BaseToolsLocalizations.of(context)!;
     return <String>[
       "localizations.rallySettingsManageAccounts",
       "localizations.rallySettingsTaxDocuments",
@@ -384,22 +380,26 @@ class DummyDataService {
   }
 
   static List<AlertData> getAlerts(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = BaseToolsLocalizations.of(context)!;
     return <AlertData>[
       AlertData(
-        message: "localizations.rallyAlertsMessageHeadsUpShopping(percentFormat(context, decimalDigits: 0).format(0.9))",
+        message:
+            "localizations.rallyAlertsMessageHeadsUpShopping(percentFormat(context, decimalDigits: 0).format(0.9))",
         iconData: Icons.sort,
       ),
       AlertData(
-        message: "localizations.rallyAlertsMessageSpentOnRestaurants(usdWithSignFormat(context, decimalDigits: 0).format(120))",
+        message:
+            "localizations.rallyAlertsMessageSpentOnRestaurants(usdWithSignFormat(context, decimalDigits: 0).format(120))",
         iconData: Icons.sort,
       ),
       AlertData(
-        message: "localizations.rallyAlertsMessageATMFees(usdWithSignFormat(context, decimalDigits: 0).format(24))",
+        message:
+            "localizations.rallyAlertsMessageATMFees(usdWithSignFormat(context, decimalDigits: 0).format(24))",
         iconData: Icons.credit_card,
       ),
       AlertData(
-        message: "localizations.rallyAlertsMessageCheckingAccount(percentFormat(context, decimalDigits: 0).format(0.04))",
+        message:
+            "localizations.rallyAlertsMessageCheckingAccount(percentFormat(context, decimalDigits: 0).format(0.04))",
         iconData: Icons.attach_money,
       ),
       AlertData(

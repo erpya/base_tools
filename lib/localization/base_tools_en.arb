@@ -24,9 +24,14 @@
     "useFingerprint": "Use Fingerprint",
     "downloading" : "Downloading",
     "upgrading" : "Upgrading",
+    "saving": "Saving",
     "updateFinished": "Update Finished",
     "noRecordsFound": "No records found",
     "locationDisabled": "Location services are disabled. Please enable the services",
     "locationDenied": "Location permissions are denied",
-    "locationPermanentlyDenied": "Location permissions are permanently denied, we cannot request permissions"
+    "locationPermanentlyDenied": "Location permissions are permanently denied, we cannot request permissions",
+    "error": "Error",
+    "info": "Information",
+    "warning": "Warning",
+    "question": "Question"
 }

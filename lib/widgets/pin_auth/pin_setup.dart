@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:base_tools/utils/utils.dart';
 import 'package:base_tools/widgets/pin_auth/pin_input.dart';
 import 'package:pin_lock/pin_lock.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:base_tools/localization/base_tools_localizations.dart';
 
 class WSetupAuthentication extends StatelessWidget {
   const WSetupAuthentication({super.key});
@@ -10,7 +10,7 @@ class WSetupAuthentication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late final Authenticator globalAuthenticator;
-    AppLocalizations? localization = AppLocalizations.of(context);
+    BaseToolsLocalizations? localization = BaseToolsLocalizations.of(context);
     return FutureBuilder(
         future: Utils.getPinAuthenticator(),
         builder: (context, awaitData) {

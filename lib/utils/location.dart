@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:base_tools/localization/base_tools_localizations.dart';
 
 class Location {
   static Future<Position> getCurrentLocation() async {
@@ -9,21 +9,21 @@ class Location {
   }
 
   static Future<bool> handleLocationPermission(BuildContext context) async {
-    AppLocalizations? localization = AppLocalizations.of(context);
+    BaseToolsLocalizations? localization = BaseToolsLocalizations.of(context);
     bool serviceEnabled;
     LocationPermission permission;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(localization!.locationDisabled)));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(localization!.locationDisabled)));
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(localization!.locationDenied)));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(localization!.locationDenied)));
         return false;
       }
     }
