@@ -20,7 +20,7 @@ class MovileContext {
   static const String USER_EMAIL_TAG = "User_Email";
 
   /// Database Identifier
-  static const String DATABASE_ID_TAG = "movil-e";
+  static const String DATABASE_ID_TAG = "demo";
 
   static SharedPreferences? globalContext;
 
